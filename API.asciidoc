@@ -1,0 +1,219 @@
+= Autobot API
+Allan Swanepoel <dragonmaster@acmeaws.com>
+
+== Description
+The API use JSON to pass the data.
+
+== Host
+
+=== Get List
+
++/api/hosts+
+
+=== Get Vars
+
++/api/hosts/{hostname}/vars+
+
+|===
+|Parameters|Data Type
+
+|hostname
+|string
+
+|===
+
+=== Get Groups
+
++/api/hosts/{hostname}/groups+
+
+|===
+|Parameters|Data Type
+
+|hostname
+|string
+
+|===
+
+=== Get Search
+
++/api/search/{search_term}+
+
+|===
+|Parameters|Data Type
+
+|search_term
+|string
+
+|===
+
+=== Delete
+
++/api/hosts/{hostname}+
+
+|===
+|Parameters|Data Type
+
+|hostname
+|string
+
+|===
+
+=== Post
+
++/api/hosts+
+
+|===
+|Parameters|Data Type
+
+|hostname
+|string
+
+|vars
+|dict
+
+|groups
+|list
+
+|===
+
+=== Put
+
++/api/hosts+
+
+|===
+|Parameters|Data Type
+
+|hostname
+|string
+
+|vars
+|dict
+
+|groups
+|list
+
+|===
+
+== Group
+
+=== Get List
+
++/api/groups+
+
+=== Get Children
+
++/api/groups/{groupname}/children+
+
+|===
+|Parameters|Data Type
+
+|groupname
+|string
+
+|===
+
+=== Get Vars
+
++/api/groups/{groupname}/vars+
+
+|===
+Parameters|Data Type
+
+|groupname
+|string
+
+|===
+
+=== Get Hosts
+
++/api/groups/{groupname}/hosts+
+
+|===
+|Parameters|Data Type
+
+|groupname
+|string
+
+|===
+
+=== Delete
+
++/api/groups/{groupname}+
+
+|===
+|Parameters|Data Type
+
+|groupname
+|string
+
+|===
+
+=== Post
+
++/api/groups
+
+|===
+|Parameters|Data Type
+
+|groupname
+|string
+
+|vars
+|dict
+
+|children
+|list
+
+|hosts
+|list
+
+|===
+
+=== Put
+
++/api/groups
+
+|===
+|Parameters|Data Type
+
+|groupname
+|string
+
+|vars
+|dict
+
+|children
+|list
+
+|hosts
+|list
+
+|===
+
+
+== Tag
+
+=== Get List
++/api/tags+
+
+
+=== Get Children
++/api/tags/{tagname}/children+
+
+|===
+|Parameters|Data Type
+
+|tagname
+|string
+|===
+
+=== Get Vars
++/api/tags/{tagname}/vars+
+
+|===
+|Parameters|Data Type
+
+|tagname
+|string
+
+|===

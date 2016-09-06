@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{#{% block action %}#}
+    <!--<script src="/static/jquery-1.4.4.min.js"></script>-->
+    <script type="text/javascript">
+        $(function() {
+            var addDiv = $('#addvarinput');
+            var i = $('#addvarinput p').size() + 1;
+
+            $('#addNew').live('click', function() {
+                $('<p><input type="text" id="t_new" name="tnew" value="" placeholder="add Ansible var" /><a href="#" id="remNew">Remove</a> </p>').appendTo(addDiv);
+                i++;
+                return false;
+            });
+
+            $('#remNew').live('click', function() {
+                if( i > 2 ) {
+                    $(this).parents('p').remove();
+                    i--;
+                }
+                return false;
+            });
+        });
+    </script>
+
+    <div class="col-md-6">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <pre>
+                        {{ message }}
+                    </pre>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form class="form form-horizontal" action="{{ url_for('addtag') }}" method="post" autocomplete="off">
+            <h3>Add Tag</h3>
+            <div class="form-group">
+                <label for="tagname">Tag name</label>
+                <input id="tagname" class="form-control" type="text" name="add_tag" autofocus="autofocus">
+            </div>
+
+            <div class="form-group">
+                <label for="hostselect">Select host(s)</label>
+                <select id="hostselect" class="form-control" name="selectedhosts" multiple="multiple">
+                    {% for item in hosts %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="groupselect">Select group(s)</label>
+                <select id="groupselect" class="form-control" name="selectedgroups" multiple="multiple">
+                    {% for item in groups %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="roleselect">Select role(s)</label>
+                <select id="roleselect" class="form-control" name="selectedroles" multiple="multiple">
+                    {% for item in roles %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Add Tag">
+        </form>
+
+    </div>
+{% endblock %}

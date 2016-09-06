@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-6">
+        {# message box #}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <pre>
+                        {{ message }}
+                    </pre>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-inline">
+            <form action="{{url_for('getroleinfo')}}" method="get">
+                <input type="text" name="q">
+                <button class="btn btn-info btn-small" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-info btn-small" href="{{url_for('addrole')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                    <a class="btn btn-default btn-small" href="{{url_for('getallroles')}}"><i class="glyphicon glyphicon-circle-arrow-down"></i></a>
+                </div>
+            </form>
+        </div>
+
+        {% if rolename %}
+            <table class="table">
+                <tr>
+                    <th class="tablewidth">Role name</th>
+                    <th>Tags</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td><b>{{ rolename }}</b></td>
+
+                    <td>
+                        <ul>
+                            {% for item in tagres %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <form action="{{url_for('editrole')}}" method="post">
+                                <input type="hidden" name="r_get" value="{{ rolename }}">
+                                <button class="btn btn-info btn-small" type="submit" name='submitBTN'><i class="glyphicon glyphicon-pencil"></i></button>
+                            </form>
+                            <form id="delete_form_1" action="{{url_for('remove')}}" method="post">
+                                <input type="hidden" name="removerole" value="{{ rolename }}" />
+                                <button id="btnConfirmDelete" class="btn btn-danger btn-small"  type="button" data-toggle="modal" data-target="#confirmDelete" data-modal-title="Delete Role"  data-modal-text="Are you sure you want to delete {{ rolename }}?"><i class="glyphicon glyphicon-trash"></i></button>
+                            </form>
+                        </div><!--end button group -->
+                    </td>
+                </tr>
+            </table>
+        {% endif %}
+
+        {% if allroles %}
+            {% if pagination %}
+                {{ pagination.links|safe}}
+            {% endif%}
+
+            <table class="table">
+                <tr>
+                    <th class="tablewidth">Role name</th>
+                    <th>Tags</th>
+                    <th></th>
+                </tr>
+
+                {% for role, tags in allroles.iteritems() %}
+                    <tr>
+                    <td><b> {{ role }} </b></td>
+                    <td> <ul>{% for item in tags %} <li>{{ item }}</li> {% endfor %}</ul></td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <form action="{{url_for('editrole')}}" method="post">
+                                <input type="hidden" name="r_get" value="{{ host }}" />
+                                <button class="btn btn-info btn-small" type="submit" name='submitBTN'><i class="glyphicon glyphicon-pencil"></i></button>
+                            </form>
+
+                            <form id="delete_form_{{ loop.index }}" action="{{url_for('remove')}}" method="post">
+                                <input type="hidden" name="removerole" value="{{ host }}" />
+                                <button id="btnConfirmDelete" class="btn btn-danger btn-small"  type="button" data-toggle="modal" data-target="#confirmDelete" data-modal-title="Delete Role"  data-modal-text="Are you sure you want to delete {{ role }}?"><i class="glyphicon glyphicon-trash"></i></button>
+                            </form>
+                        </div><!-- end button group -->
+                    </td>
+                {% endfor %}
+
+                </tr>
+            </table>
+
+            {% if pagination %}
+                {{ pagination.links|safe }}
+            {% endif%}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-6">
+                {% block action %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
