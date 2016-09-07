@@ -1,5 +1,5 @@
 import flask
-import flask.views
+from flask.views import MethodView
 
 
 app = flask.Flask('app')
@@ -30,9 +30,33 @@ from app.modules.role.api import GetRolesSearchAPI, GetRoleTagsAPI, RolesAPI
 from remove import Remove
 
 
-class Main(flask.views.MethodView):
+class Main(MethodView):
     def get(self):
         return flask.render_template('index.html')
+
+    def post(self):
+        pass
+
+
+class IronHide(MethodView):
+    def get(self):
+        return flask.render_template('ironhide.html')
+
+    def post(self):
+        pass
+
+
+class Optimus(MethodView):
+    def get(self):
+        return flask.render_template('optimus.html')
+
+    def post(self):
+        pass
+
+
+class BumbleBee(MethodView):
+    def get(self):
+        return flask.render_template('bumblebee.html')
 
     def post(self):
         pass
@@ -56,7 +80,9 @@ api.add_resource(GetRoleTagsAPI,'/api/ironhide/roles/<string:rolename>/tags')
 api.add_resource(GetRolesSearchAPI,'/api/ironhide/roles/search/<string:search_term>')
 
 app.add_url_rule('/', view_func=Main.as_view('index'), methods=['GET', 'POST'])
-#app.add_url_rule('/ironhide/', view_func=Main.as_view('index'), methods=['GET', 'POST'])
+app.add_url_rule('/bumblebee/', view_func=BumbleBee.as_view('bumblebee'), methods=['GET', 'POST'])
+app.add_url_rule('/ironhide/', view_func=IronHide.as_view('ironhide'), methods=['GET', 'POST'])
+app.add_url_rule('/optimus/', view_func=Optimus.as_view('optimus'), methods=['GET', 'POST'])
 
 app.add_url_rule('/ironhide/addhost', view_func=AddHost.as_view('addhost'), methods=['GET', 'POST'])
 app.add_url_rule('/ironhide/gethostinfo', view_func=GetHost.as_view('gethostinfo'), methods=['GET', 'POST'])
