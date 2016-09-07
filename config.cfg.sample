@@ -1,0 +1,8 @@
+import os
+_basedir = os.path.abspath(os.path.dirname(__file__))
+
+MONGOSRV = "127.0.0.1"
+MONGOPORT = 27017
+DATABASE = "cmdb"
+NUMBER_OF_ITEMS_PER_PAGE = 10
+SECRET_KEY = "secret"
