@@ -1,12 +1,12 @@
 {% extends "ironhide-base.html" %}
 
-{% block action %}
+{% block body %}
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}
-<pre>
-{{ message }}
-</pre>
+            <pre>
+                {{ message }}
+            </pre>
         {% endfor %}
     {% endif %}
 {% endwith %}

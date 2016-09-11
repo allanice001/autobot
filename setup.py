@@ -7,6 +7,8 @@ setup(
         'flask_paginate',
         'pyyaml',
         'pymongo',
+        'twisted',
+        'mako',
     ],
     packages=find_packages(exclude=['tests'])
 )

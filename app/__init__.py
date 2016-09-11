@@ -1,8 +1,7 @@
-import flask
 from flask.views import MethodView
+from flask import Flask, render_template
 
-
-app = flask.Flask('app')
+app = Flask('app')
 app.config.from_pyfile('../config.cfg')
 
 from flask_restful import Api
@@ -32,7 +31,7 @@ from remove import Remove
 
 class Main(MethodView):
     def get(self):
-        return flask.render_template('index.html')
+        return render_template('index.html')
 
     def post(self):
         pass
@@ -40,7 +39,7 @@ class Main(MethodView):
 
 class IronHide(MethodView):
     def get(self):
-        return flask.render_template('ironhide.html')
+        return render_template('ironhide.html')
 
     def post(self):
         pass
@@ -48,7 +47,7 @@ class IronHide(MethodView):
 
 class Optimus(MethodView):
     def get(self):
-        return flask.render_template('optimus.html')
+        return render_template('optimus.html')
 
     def post(self):
         pass
@@ -56,11 +55,18 @@ class Optimus(MethodView):
 
 class BumbleBee(MethodView):
     def get(self):
-        return flask.render_template('bumblebee.html')
+        return render_template('bumblebee.html')
 
     def post(self):
         pass
 
+
+class Ratchet(MethodView):
+    def get(self):
+        return render_template('ratchet.html')
+
+    def post(self):
+        pass
 
 api.add_resource(GetHostVarsAPI, '/api/ironhide/hosts/<string:hostname>/vars')
 api.add_resource(GetHostGroupsAPI, '/api/ironhide/hosts/<string:hostname>/groups')
@@ -83,6 +89,8 @@ app.add_url_rule('/', view_func=Main.as_view('index'), methods=['GET', 'POST'])
 app.add_url_rule('/bumblebee/', view_func=BumbleBee.as_view('bumblebee'), methods=['GET', 'POST'])
 app.add_url_rule('/ironhide/', view_func=IronHide.as_view('ironhide'), methods=['GET', 'POST'])
 app.add_url_rule('/optimus/', view_func=Optimus.as_view('optimus'), methods=['GET', 'POST'])
+app.add_url_rule('/ratchet/', view_func=Ratchet.as_view('ratchet'), methods=['GET', 'POST'])
+
 
 app.add_url_rule('/ironhide/addhost', view_func=AddHost.as_view('addhost'), methods=['GET', 'POST'])
 app.add_url_rule('/ironhide/gethostinfo', view_func=GetHost.as_view('gethostinfo'), methods=['GET', 'POST'])
