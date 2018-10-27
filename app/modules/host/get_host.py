@@ -55,7 +55,7 @@ class GetHost(MethodView):
             return None
         else:
             for item in host:
-                print item
+                print(item)
                 ansiblevars = item['vars']
             return ansiblevars
 

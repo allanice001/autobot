@@ -26,7 +26,7 @@ from app.modules.role.add_role import AddRole
 from app.modules.role.get_role import GetRole, GetAllRoles
 from app.modules.role.api import GetRolesSearchAPI, GetRoleTagsAPI, RolesAPI
 
-from remove import Remove
+from .remove import Remove
 
 
 class Main(MethodView):

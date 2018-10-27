@@ -65,8 +65,8 @@ class EditHostSubmit(MethodView):
             yamlvars = request.form['ehyaml']
             try:
                 y = yaml.load(yamlvars)
-            except yaml.YAMLError, exc:
-                print "Yaml syntax error"
+            except yaml.YAMLError as exc:
+                print("Yaml syntax error")
             try:
                 db.hosts.update({"hostname": hostname}, {"$set": {'vars': y}}, upsert=False,multi=False)
             except:

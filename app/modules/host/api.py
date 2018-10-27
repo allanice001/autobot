@@ -24,15 +24,15 @@ def add_host(hostname, ansiblevars):
             y = yaml.load(j)
         else:
             y = yaml.load('{}')
-    except yaml.YAMLError, exc:
-        print "Yaml syntax error"
+    except yaml.YAMLError as  exc:
+        print("Yaml syntax error")
 
     post = dict(hostname=hostname, vars=y)
 
     try:
         common.db.hosts.insert(post)
     except:
-        print "insert error"
+        print("insert error")
         pass
 
 

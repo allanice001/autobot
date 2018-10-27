@@ -1,10 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import pymongo
 import json
 import sys
 
 # mongod connection
-conn = pymongo.Connection('127.0.0.1', 27017)
+conn = pymongo.MongoClient('127.0.0.1', 27017)
 db = conn['cmdb']
 
 
@@ -25,7 +25,7 @@ def getlist():
             groupitems = db.groups.find({"groupname": groupname}, {"_id": 0, "groupname": 0})
             for var in groupitems:
                 inv[groupname] = var
-    print json.dumps(inv, sort_keys=True, indent=2)
+    print(json.dumps(inv, sort_keys=True, indent=2))
 
 # ------------------------------------------------------------------
 # get host variables
@@ -35,7 +35,7 @@ def getdetails(host):
     for item in vars:
         #varlist[host] = item["vars"]
         varlist = item["vars"]
-    print json.dumps(varlist, sort_keys=True, indent=2)
+    print(json.dumps(varlist, sort_keys=True, indent=2))
 
 # ------------------------------------------------------------------
 # command line options
@@ -47,5 +47,5 @@ elif len(sys.argv) == 3 and (sys.argv[1] == '--host'):
     getdetails(host)
 
 else:
-    print "usage --list or --host <hostname>"
+    print("usage --list or --host <hostname>")
     sys.exit(1)

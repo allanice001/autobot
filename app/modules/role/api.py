@@ -19,7 +19,7 @@ def add_role(role_name):
     try:
         common.db.roles.insert(post)
     except:
-        print "insert error"
+        print("insert error")
         pass
 
 

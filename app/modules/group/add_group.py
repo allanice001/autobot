@@ -58,7 +58,7 @@ class AddGroup(flask.views.MethodView):
             members.append(host)
 
         for child in selectedchildren:
-            print child
+            print(child)
             children.append(child)
 
         post = {"groupname": groupname,

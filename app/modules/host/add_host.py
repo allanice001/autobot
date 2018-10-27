@@ -46,8 +46,8 @@ class AddHost(flask.views.MethodView):
                 y = yaml.load('{}')
             else:
                 y = yaml.load(yamlvars)
-        except yaml.YAMLError, exc:
-            print "Yaml syntax error"
+        except yaml.YAMLError as exc:
+            print("Yaml syntax error")
 
 
         post = {"hostname": hostname,
