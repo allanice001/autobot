@@ -101,7 +101,7 @@ class EditGroupSubmit(flask.views.MethodView):
         self.update_group(groupname)
         self.update_hosts(groupname)
         self.update_childgroups(groupname)
-        return flask.redirect('getallgroups')
+        return flask.redirect(flask.url_for('getallgroups'))
 
     def get(self):
         return flask.render_template('editgroup.html')

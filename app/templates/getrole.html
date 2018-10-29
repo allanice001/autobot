@@ -71,7 +71,7 @@
                     <th></th>
                 </tr>
 
-                {% for role, tags in allroles.iteritems() %}
+                {% for role, tags in allroles.items() %}
                     <tr>
                     <td><b> {{ role }} </b></td>
                     <td> <ul>{% for item in tags %} <li>{{ item }}</li> {% endfor %}</ul></td>

@@ -71,7 +71,7 @@
                     <th></th>
                 </tr>
 
-                {% for host, groups in allhosts.iteritems() %}
+                {% for host, groups in allhosts.items() %}
                     <tr>
                     <td><b> {{ host }} </b></td>
                     <td> <ul>{% for item in groups %} <li>{{ item }}</li> {% endfor %}</ul></td>
